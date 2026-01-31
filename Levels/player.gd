@@ -17,9 +17,9 @@ var speed_duration = 0
 @export var max_ram_duration = 2
 var ram_duration = 0
 
-func _process(_delta):
+func _process(delta):
 	handle_abilities()
-	movement(_delta)
+	movement(delta)
 
 func handle_abilities():
 	if Input.is_action_just_pressed("Power"):
@@ -33,7 +33,7 @@ func handle_abilities():
 			ram_duration = max_ram_duration
 			ability = 0
 
-func movement(_delta):
+func movement(delta):
 	# Add the gravity.
 	if !is_on_floor():
 		velocity.y += GRAVITY
@@ -47,7 +47,7 @@ func movement(_delta):
 	var modified_speed = SPEED
 	if speed_duration > 0:
 		modified_speed = SPEED * speed_multiplier
-		speed_duration -= _delta
+		speed_duration -= delta
 	else:
 		speed_duration = 0
 	
@@ -59,6 +59,5 @@ func movement(_delta):
 	move_and_slide()
 	
 func jump():
-	if Input.is_action_just_pressed("Jump"):
-		if is_on_floor():
-			velocity.y = -JUMP_FORCE	
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
+		velocity.y = -JUMP_FORCE	
