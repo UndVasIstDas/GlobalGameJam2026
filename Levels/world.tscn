@@ -1,13 +1,14 @@
 [gd_scene format=4 uid="uid://f7qud7k2qoaa"]
 
-[ext_resource type="Script" uid="uid://cvlhsl3ilfnu2" path="res://Levels/player.gd" id="1_i4kf4"]
-[ext_resource type="Texture2D" uid="uid://bla5jjpa7oa5y" path="res://icon.svg" id="2_fy36t"]
+[ext_resource type="Script" uid="uid://cvlhsl3ilfnu2" path="res://Levels/player.gd" id="1_pa6j6"]
+[ext_resource type="Texture2D" uid="uid://bla5jjpa7oa5y" path="res://icon.svg" id="2_4dvsh"]
+[ext_resource type="Script" uid="uid://df4tvp72farsg" path="res://Levels/viewport.gd" id="3_ks8n1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_njhy2"]
 size = Vector2(128, 124)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4kf4"]
-texture = ExtResource("2_fy36t")
+texture = ExtResource("2_4dvsh")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 1:0/0 = 0
@@ -141,11 +142,14 @@ texture = ExtResource("2_fy36t")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_i4kf4")
 
-[node name="level1" type="Node2D" unique_id=427176248]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4kf4"]
+size = Vector2(0.5851883, 1.7353148)
+
+[node name="world" type="Node2D" unique_id=427176248]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=528138566]
 position = Vector2(58, 27)
-script = ExtResource("1_i4kf4")
+script = ExtResource("1_pa6j6")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=454940013]
@@ -154,11 +158,24 @@ shape = SubResource("RectangleShape2D_njhy2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1826424940]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_fy36t")
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1920231173]
+texture = ExtResource("2_4dvsh")
 
 [node name="TileMap" type="TileMapLayer" parent="." unique_id=527267817]
 position = Vector2(-19, 0)
 tile_map_data = PackedByteArray("AAAAAAQAAAADAAUAAAABAAQAAAADAAUAAAACAAQAAAADAAUAAAADAAQAAAADAAUAAAAEAAQAAAADAAUAAAAFAAQAAAADAAUAAAAGAAQAAAADAAUAAAAHAAQAAAADAAUAAAAIAAQAAAADAAUAAAAJAAQAAAADAAUAAAAKAAQAAAADAAUAAAALAAQAAAADAAUAAAAMAAQAAAADAAUAAAANAAQAAAADAAUAAAAOAAUAAAADAAUAAAAPAAUAAAADAAUAAAAQAAUAAAADAAUAAAARAAUAAAADAAUAAAASAAUAAAADAAUAAAATAAUAAAADAAUAAAAUAAUAAAADAAUAAAAVAAUAAAADAAUAAAAWAAUAAAADAAUAAAAXAAUAAAADAAUAAAAYAAUAAAADAAUAAAAZAAUAAAADAAUAAAAaAAUAAAADAAUAAAAbAAUAAAADAAUAAAAcAAUAAAADAAUAAAAdAAUAAAADAAUAAAAeAAUAAAADAAUAAAAfAAUAAAADAAUAAAAgAAUAAAADAAUAAAAhAAUAAAADAAUAAAAiAAUAAAADAAUAAAAjAAUAAAADAAUAAAA=")
 tile_set = SubResource("TileSet_fy36t")
+
+[node name="Viewport" type="Area2D" parent="." unique_id=2126979914]
+position = Vector2(0, -108)
+scale = Vector2(-1982.2678, -375.7243)
+script = ExtResource("3_ks8n1")
+
+[node name="Camera2D" type="Camera2D" parent="Viewport" unique_id=1920231173]
+position = Vector2(1.4337977e-17, -6.9849193e-10)
+rotation = 3.1415927
+scale = Vector2(0.0005044727, 0.002661526)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Viewport" unique_id=1113080602]
+position = Vector2(7.6976425e-09, -0.007984549)
+shape = SubResource("RectangleShape2D_i4kf4")
+disabled = true
