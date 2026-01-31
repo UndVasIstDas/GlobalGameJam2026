@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://f7qud7k2qoaa"]
+
+[ext_resource type="Script" uid="uid://cd1weviwjgbca" path="res://Levels/world.gd" id="1_4dvsh"]
+[ext_resource type="Script" uid="uid://cvlhsl3ilfnu2" path="res://Levels/player.gd" id="1_pa6j6"]
+[ext_resource type="Texture2D" uid="uid://bla5jjpa7oa5y" path="res://icon.svg" id="2_4dvsh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njhy2"]
+size = Vector2(128, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4kf4"]
+size = Vector2(0.5851883, 1.7353148)
+
+[node name="world" type="Node2D" unique_id=427176248]
+script = ExtResource("1_4dvsh")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=528138566]
+position = Vector2(-306, -136)
+script = ExtResource("1_pa6j6")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=454940013]
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_njhy2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1826424940]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_4dvsh")
+
+[node name="Viewport" type="Area2D" parent="." unique_id=2126979914]
+position = Vector2(0, -108)
+scale = Vector2(-1982.2678, -375.7243)
+
+[node name="Camera2D" type="Camera2D" parent="Viewport" unique_id=1920231173]
+position = Vector2(1.4337977e-17, -6.9849193e-10)
+rotation = 3.1415927
+scale = Vector2(0.0005044727, 0.002661526)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Viewport" unique_id=1113080602]
+position = Vector2(0.0010089454, 0.007984586)
+shape = SubResource("RectangleShape2D_i4kf4")
