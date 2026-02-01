@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 # Player Physics Properties
 @export_category("Player Physics Properties")
-@export var SPEED = 300.0
+@export var SPEED_BASE = 300.0
 @export var JUMP_FORCE = 500.0
-@export var GRAVITY = 20
+@export var GRAVITY = 25
+var speed = SPEED_BASE
 
 # Player Abilities
 @export_category("Player Abilities")
@@ -50,14 +51,16 @@ func movement(delta):
 	
 	if dash_duration > 0:
 		dash_duration -= delta
-		velocity.x = SPEED+300
+		velocity.x = speed*1.5
 		velocity.y *= 0.3
 	else:
 		dash_duration = 0
-		if direction:
-			velocity.x = direction * SPEED
+		if direction < 0:
+			velocity.x = direction * SPEED_BASE
+		elif direction:
+			velocity.x = direction * speed
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = move_toward(velocity.x, 0, speed)
 	
 
 	move_and_slide()

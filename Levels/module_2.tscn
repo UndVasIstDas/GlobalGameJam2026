@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cj0pgrps5u4l4"]
+[gd_scene format=4 uid="uid://dfff1i8fu1ail"]
 
 [ext_resource type="Texture2D" uid="uid://bla5jjpa7oa5y" path="res://icon.svg" id="1_7gt88"]
 [ext_resource type="Script" uid="uid://mlpxohn8tbxx" path="res://Levels/Mask.gd" id="2_0wuwv"]
@@ -349,5 +349,8 @@ animation = &"RabbitHover"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RabbitMask" unique_id=848326674]
 shape = SubResource("CircleShape2D_nwtbe")
+
+[node name="end" type="Marker2D" parent="." unique_id=675739327]
+position = Vector2(1152, 0)
 
 [connection signal="body_entered" from="RabbitMask" to="RabbitMask" method="_on_body_entered"]

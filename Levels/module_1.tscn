@@ -350,4 +350,7 @@ animation = &"RhinoHover"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RhinoMask" unique_id=792701931]
 shape = SubResource("CircleShape2D_row4s")
 
+[node name="end" type="Marker2D" parent="." unique_id=1342392127]
+position = Vector2(1152, 0)
+
 [connection signal="body_entered" from="RhinoMask" to="RhinoMask" method="_on_body_entered"]

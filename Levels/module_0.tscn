@@ -338,7 +338,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAACAAQAAAABAAAAAAACAAQAAAACAAAAAAACAAQ
 tile_set = SubResource("TileSet_hu1jg")
 
 [node name="ChickenMask" type="Area2D" parent="." unique_id=1622133146 groups=["ChickenMask"]]
-position = Vector2(372, -27)
+position = Vector2(212, -27)
 script = ExtResource("2_nf6wt")
 metadata/_edit_group_ = true
 
@@ -349,5 +349,8 @@ animation = &"ChickenHover"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChickenMask" unique_id=1258979378]
 shape = SubResource("CircleShape2D_js8wt")
+
+[node name="end" type="Marker2D" parent="." unique_id=279077123]
+position = Vector2(1152, 0)
 
 [connection signal="body_entered" from="ChickenMask" to="ChickenMask" method="_on_body_entered"]
