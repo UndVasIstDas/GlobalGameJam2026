@@ -17,10 +17,10 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_twkeg")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ngvf"]
-size = Vector2(52, 92.5)
+size = Vector2(51, 93.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ki0fc"]
-size = Vector2(64, 92)
+size = Vector2(212, 92)
 
 [sub_resource type="Gradient" id="Gradient_o2n1l"]
 offsets = PackedFloat32Array(0.30416667, 1)
@@ -42,11 +42,11 @@ script = ExtResource("6_2ngvf")
 [node name="StaticBody2D" type="StaticBody2D" parent="Door" unique_id=141924615]
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Door/StaticBody2D" unique_id=1892393788]
-position = Vector2(1, -11.5)
+position = Vector2(1.5, -12.125)
 shape = SubResource("RectangleShape2D_2ngvf")
 
 [node name="BreakBox" type="CollisionShape2D" parent="Door" unique_id=1674156086]
-position = Vector2(-5, -13)
+position = Vector2(-79, -13)
 shape = SubResource("RectangleShape2D_ki0fc")
 debug_color = Color(0.67722064, 0.5057721, 1.92523e-07, 0.41960785)
 
@@ -71,4 +71,5 @@ damping_max = 1.0
 color_ramp = SubResource("Gradient_o2n1l")
 
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
+[connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]
 [connection signal="finished" from="Door/DustParticles" to="Door" method="_on_dust_particles_finished"]

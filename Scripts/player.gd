@@ -14,10 +14,9 @@ var speed = SPEED_BASE
 var dash_duration = 0
 @export var speed_multiplier = 1.5
 
-@export var max_ram_duration = 0.5
-var ram_duration = 0
-
 @onready var player_sprite = $AnimatedSprite2D
+
+var breakable_object = null
 
 func _process(delta):
 	handle_abilities()
@@ -30,8 +29,8 @@ func handle_abilities():
 		velocity.y = -JUMP_FORCE
 	elif Input.is_action_just_pressed("Power2"):
 		dash_duration = max_dash_duration
-	elif Input.is_action_just_pressed("Power3"):
-		ram_duration = max_ram_duration
+	elif Input.is_action_just_pressed("Power3") and not breakable_object == null:
+		breakable_object.break_door(self)
 
 func movement(delta):
 	# Add the gravity.
@@ -43,9 +42,6 @@ func movement(delta):
 	# Get the input direction and handle the movement/deceleration.
 	
 	var direction := Input.get_axis("Left", "Right")
-	
-	if ram_duration > 0:
-		ram_duration -= delta
 	
 	if dash_duration > 0:
 		dash_duration -= delta
@@ -85,3 +81,11 @@ func flip_player():
 		player_sprite.flip_h = true
 	elif velocity.x < 0:
 		player_sprite.flip_h = false
+		
+# Mark door as breakable
+func set_breakable(body):
+	breakable_object = body
+	
+func clear_breakable(body):
+	if breakable_object == body:
+		breakable_object = null
