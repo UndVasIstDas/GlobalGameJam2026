@@ -1,60 +1,57 @@
-[gd_scene format=4 uid="uid://dk48a4deaq22a"]
+[gd_scene format=4 uid="uid://c1mxjtyyh51db"]
 
-[ext_resource type="Texture2D" uid="uid://cpo480eeq7jo6" path="res://Assets/world1_hallway_platform.png" id="1_wpg6n"]
+[ext_resource type="TileSet" uid="uid://c3c118pqoej8x" path="res://Assets/hallway_ground_tileset.tres" id="1_wpg6n"]
+[ext_resource type="TileSet" uid="uid://cyxlhdeqiuqeh" path="res://Assets/hallway_walls_tileset.tres" id="2_twkeg"]
 [ext_resource type="Script" uid="uid://ceircb437dldx" path="res://Scripts/breakable.gd" id="6_2ngvf"]
 [ext_resource type="Texture2D" uid="uid://cloo8blcthym1" path="res://Assets/door.png" id="6_twkeg"]
 [ext_resource type="Texture2D" uid="uid://bpho2up6yo5y" path="res://Assets/CloudTexture.png" id="8_ki0fc"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_twkeg"]
-texture = ExtResource("1_wpg6n")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-
-[sub_resource type="TileSet" id="TileSet_2ngvf"]
-tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_twkeg")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ngvf"]
-size = Vector2(51, 93.75)
+size = Vector2(55, 96.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ki0fc"]
-size = Vector2(212, 92)
+size = Vector2(212, 95)
 
 [sub_resource type="Gradient" id="Gradient_o2n1l"]
 offsets = PackedFloat32Array(0.30416667, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="module_1" type="Node2D" unique_id=1182130145]
+[node name="module_1" type="Node2D" unique_id=802640753]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1185557520]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAdAAAAAAAAAAAAAAAeAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAhAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAjAAAAAAAAAAAAAAAbAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAZAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAVAAAAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_2ngvf")
+[node name="ground" type="TileMapLayer" parent="." unique_id=2091550694]
+z_index = 1
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAhAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAjAAAAAAAAAAAAAAAYAPz/AAAAAAAAAAAZAPz/AAAAAAAAAAAaAPz/AAAAAAAAAAAbAPz/AAAAAAAAAAAcAPz/AAAAAAAAAAAdAPz/AAAAAAAAAAAeAPz/AAAAAAAAAAAfAPz/AAAAAAAAAAAkAAAAAAAAAAAAAAAlAAAAAAAAAAAAAAAmAAAAAAAAAAAAAAAnAAAAAAAAAAAAAAAUAPz/AAAAAAAAAAAVAPz/AAAAAAAAAAAWAPz/AAAAAAAAAAAXAPz/AAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAA=")
+tile_set = ExtResource("1_wpg6n")
 
-[node name="end" type="Marker2D" parent="." unique_id=1342392127]
-position = Vector2(1152, 0)
+[node name="end" type="Marker2D" parent="." unique_id=627741739]
+position = Vector2(1280, 0)
 
-[node name="Door" type="Area2D" parent="." unique_id=1928333180]
-position = Vector2(524, -35)
+[node name="walls" type="TileMapLayer" parent="." unique_id=1073559706]
+position = Vector2(0, 32)
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAACAAAAAAAAAAAAAAAAAAEAAAACAAAAAAABAAEAAAADAAAAAAACAAEAAAACAAAAAAADAAAAAAAEAAAAAAADAAEAAAADAAAAAAAGAAEAAAAEAAAAAAAGAAAAAAABAAAAAAAGAP//AAACAAAAAAAHAP//AAACAAAAAAAHAAAAAAABAAAAAAAHAAEAAAACAAAAAAAIAAAAAAAEAAAAAAAIAAEAAAACAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAEAAAAAAACAAIAAAAEAAAAAAADAAIAAAAAAAAAAAAGAAIAAAABAAAAAAAHAAIAAAAAAAAAAAAIAAIAAAADAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAADAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAFAP3/AAACAAAAAAAGAP3/AAACAAAAAAAHAP3/AAAAAAAAAAAIAP3/AAACAAAAAAAJAP3/AAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAACAAAAAAAEAAAAAAACAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAACAAAAAAAFAP//AAAAAAAAAAAFAAAAAAACAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAAAP7/AAACAAAAAAABAP7/AAAAAAAAAAACAP7/AAACAAAAAAADAP7/AAACAAAAAAA=")
+tile_set = ExtResource("2_twkeg")
+
+[node name="Door" type="Area2D" parent="." unique_id=1714887696]
+position = Vector2(484, -34)
 script = ExtResource("6_2ngvf")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Door" unique_id=141924615]
+[node name="StaticBody2D" type="StaticBody2D" parent="Door" unique_id=133261321]
 
-[node name="CollisionBox" type="CollisionShape2D" parent="Door/StaticBody2D" unique_id=1892393788]
-position = Vector2(1.5, -12.125)
+[node name="CollisionBox" type="CollisionShape2D" parent="Door/StaticBody2D" unique_id=1480643151]
+position = Vector2(-0.5, -13.625)
 shape = SubResource("RectangleShape2D_2ngvf")
 
-[node name="BreakBox" type="CollisionShape2D" parent="Door" unique_id=1674156086]
-position = Vector2(-79, -13)
+[node name="BreakBox" type="CollisionShape2D" parent="Door" unique_id=251023282]
+position = Vector2(-79, -14.5)
 shape = SubResource("RectangleShape2D_ki0fc")
 debug_color = Color(0.67722064, 0.5057721, 1.92523e-07, 0.41960785)
 
-[node name="Sprite2D" type="Sprite2D" parent="Door" unique_id=1441015691]
-scale = Vector2(0.15, 0.15)
+[node name="Sprite2D" type="Sprite2D" parent="Door" unique_id=1509683636]
+position = Vector2(-2.2500024, -2.25696)
+scale = Vector2(0.15791668, 0.15879399)
 texture = ExtResource("6_twkeg")
 
-[node name="DustParticles" type="CPUParticles2D" parent="Door" unique_id=1007563326]
+[node name="DustParticles" type="CPUParticles2D" parent="Door" unique_id=549409204]
 position = Vector2(1, -12)
 emitting = false
 amount = 15

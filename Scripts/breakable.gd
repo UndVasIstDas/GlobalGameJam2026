@@ -19,12 +19,10 @@ func _on_body_entered(body):
 		#$Sprite2D.visible = false
 		
 		# When player approaches door, set this door as breakable by the player
-		print("Signal logged")
 		body.set_breakable(self)
 		
 # Break this door
 func break_door(player):
-	print("breaking")
 	dust_particles.emitting = true
 	$StaticBody2D.set_collision_layer_value(1, false)
 	$Sprite2D.visible = false	
@@ -34,5 +32,5 @@ func _on_dust_particles_finished() -> void:
 	queue_free()
 	
 func _on_body_exited(body: Node2D) -> void:
-	if(body.is_in_group("Player")):
+	if(body.is_in_group("Player")):	
 		body.clear_breakable(self)

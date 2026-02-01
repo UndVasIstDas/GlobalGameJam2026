@@ -1,0 +1,76 @@
+[gd_scene format=4 uid="uid://dc0ni6464d0p8"]
+
+[ext_resource type="Texture2D" uid="uid://cpo480eeq7jo6" path="res://Assets/world1_hallway_platform.png" id="1_mxx8i"]
+[ext_resource type="Script" uid="uid://ceircb437dldx" path="res://Scripts/breakable.gd" id="2_qq070"]
+[ext_resource type="Texture2D" uid="uid://cloo8blcthym1" path="res://Assets/door.png" id="3_o54ym"]
+[ext_resource type="Texture2D" uid="uid://bpho2up6yo5y" path="res://Assets/CloudTexture.png" id="4_fer3w"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_twkeg"]
+texture = ExtResource("1_mxx8i")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_2ngvf"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_twkeg")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxx8i"]
+size = Vector2(55, 96.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq070"]
+size = Vector2(212, 95)
+
+[sub_resource type="Gradient" id="Gradient_o54ym"]
+offsets = PackedFloat32Array(0.30416667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="door_template" type="Node2D" unique_id=1182130145]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1185557520]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAdAAAAAAAAAAAAAAAeAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAhAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAjAAAAAAAAAAAAAAAbAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAZAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAVAAAAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_2ngvf")
+
+[node name="end" type="Marker2D" parent="." unique_id=1342392127]
+position = Vector2(1152, 0)
+
+[node name="Door" type="Area2D" parent="." unique_id=1889549746]
+position = Vector2(484, -34)
+script = ExtResource("2_qq070")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Door" unique_id=1231409173]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Door/StaticBody2D" unique_id=1855566456]
+position = Vector2(-0.5, -13.625)
+shape = SubResource("RectangleShape2D_mxx8i")
+
+[node name="BreakBox" type="CollisionShape2D" parent="Door" unique_id=1247665096]
+position = Vector2(-79, -14.5)
+shape = SubResource("RectangleShape2D_qq070")
+debug_color = Color(0.67722064, 0.5057721, 1.92523e-07, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="Door" unique_id=481018178]
+position = Vector2(-2.2500024, -2.25696)
+scale = Vector2(0.15791668, 0.15879399)
+texture = ExtResource("3_o54ym")
+
+[node name="DustParticles" type="CPUParticles2D" parent="Door" unique_id=190604456]
+position = Vector2(1, -12)
+emitting = false
+amount = 15
+texture = ExtResource("4_fer3w")
+lifetime = 0.4
+one_shot = true
+speed_scale = 0.8
+emission_shape = 1
+emission_sphere_radius = 42.62
+direction = Vector2(10, 40)
+gravity = Vector2(0, 0)
+damping_min = 0.7
+damping_max = 1.0
+color_ramp = SubResource("Gradient_o54ym")
+
+[connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
+[connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]
+[connection signal="finished" from="Door/DustParticles" to="Door" method="_on_dust_particles_finished"]
