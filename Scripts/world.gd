@@ -5,6 +5,7 @@ const SPEED_MIN = 4
 const MODULE_PATH = "res://Levels";
 const MODULE_LIST = ["module_4","module_0"] 	# List of module scenes
 const MODULE_LIMIT = 10
+const SPEED_MIN = 4
 
 var module_pos_queue = [0] 		# x-offset for the next module
 var module_queue = []	# queue tracking the number of modules
@@ -36,8 +37,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not is_game_active:
 		if Input.is_action_just_pressed("Start"):
-			get_tree().reload_current_scene()
-		return
+			get_parent().load_world(self)
+		return 
 	
 	# Move camera proportional to time (in seconds)
 	var speed = max(VIEWPORT_SPEED_MOD*sqrt(Time.get_ticks_msec()-start_time), SPEED_MIN)

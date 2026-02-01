@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MaskBonanza"
-run/main_scene="uid://f7qud7k2qoaa"
+run/main_scene="uid://bbuikmyly45xh"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://dpur55trg5fun"
 

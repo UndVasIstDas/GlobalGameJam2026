@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bbuikmyly45xh"]
+
+[ext_resource type="Texture2D" uid="uid://dpur55trg5fun" path="res://Assets/maskheist_thumbnail.png" id="1_6ucrw"]
+[ext_resource type="Script" uid="uid://dl4041cvsrphy" path="res://Levels/main_menu.gd" id="1_jy27m"]
+
+[node name="MainMenu" type="Node2D" unique_id=135213743]
+script = ExtResource("1_jy27m")
+
+[node name="MainMenu" type="Control" parent="." unique_id=1924550267]
+z_index = 6
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SplashArt" type="TextureRect" parent="MainMenu" unique_id=1943033820]
+z_index = 1
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 720.0
+offset_bottom = 72.0
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("1_6ucrw")
+
+[node name="MainBackground" type="ColorRect" parent="MainMenu" unique_id=751890706]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="RichTextLabel" parent="MainMenu" unique_id=1651340649]
+z_index = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -506.0
+offset_bottom = 148.0
+grow_horizontal = 0
+theme_override_font_sizes/normal_font_size = 70
+text = "Mask Bonanza"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Prompt" type="Label" parent="MainMenu" unique_id=1353357810]
+z_index = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -499.0
+offset_top = -42.0
+offset_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Press Enter to Start..."
+horizontal_alignment = 1
+vertical_alignment = 1
