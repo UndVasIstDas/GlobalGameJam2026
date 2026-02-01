@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cir8lhe2y2at"]
 
 [ext_resource type="Texture2D" uid="uid://cpo480eeq7jo6" path="res://Assets/world1_hallway_platform.png" id="1_w8k8f"]
+[ext_resource type="Texture2D" uid="uid://b1jwewcpgcs6t" path="res://Assets/world1_hallway_frontwall.png" id="2_1l5is"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1l5is"]
 texture = ExtResource("1_w8k8f")
@@ -8,10 +9,25 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_015cl"]
+texture = ExtResource("2_1l5is")
+texture_region_size = Vector2i(32, 32)
+0:0/size_in_atlas = Vector2i(4, 4)
+0:0/0 = 0
+4:0/size_in_atlas = Vector2i(4, 4)
+4:0/0 = 0
+8:0/size_in_atlas = Vector2i(4, 4)
+8:0/0 = 0
+12:0/size_in_atlas = Vector2i(4, 4)
+12:0/0 = 0
+16:0/size_in_atlas = Vector2i(4, 4)
+16:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_015cl"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_1l5is")
+sources/2 = SubResource("TileSetAtlasSource_015cl")
 
 [node name="module_3" type="Node2D" unique_id=1505417209]
 
