@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cb75ajt6lxoh7" path="res://Assets/Masks/rabbit_mask.png" id="5_x5oxt"]
 [ext_resource type="Texture2D" uid="uid://v28b33u66oq5" path="res://Assets/Masks/rhino_mask.png" id="6_vqnaq"]
 [ext_resource type="Texture2D" uid="uid://cw7dus3fbxctb" path="res://Assets/CharaterSheets/default_jump.png" id="7_pr8ms"]
-[ext_resource type="Script" path="res://Scripts/cooldown_timer.gd" id="8_ay5oo"]
+[ext_resource type="Script" uid="uid://cay1lwxnlx2iu" path="res://Scripts/cooldown_timer.gd" id="8_ay5oo"]
 [ext_resource type="TileSet" uid="uid://c50vnu6wnqa1j" path="res://Assets/hallway_ground_tileset.tres" id="8_rljl1"]
 [ext_resource type="TileSet" uid="uid://sm3r4n5vpckc" path="res://Assets/hallway_walls_tileset.tres" id="9_06jdw"]
 [ext_resource type="Texture2D" uid="uid://dmst8aeayfq6" path="res://Assets/CharaterSheets/rabbit_jump.png" id="9_6m1pe"]
