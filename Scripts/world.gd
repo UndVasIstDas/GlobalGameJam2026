@@ -2,14 +2,14 @@ extends Node2D
 
 const VIEWPORT_SPEED_MOD = .05 			# Scalar for viewport movement function
 const MODULE_PATH = "res://Levels";
-const MODULE_LIST = ["module_1"] 	# List of module scenes
+const MODULE_LIST = ["module_4"] 	# List of module scenes
 const MODULE_LIMIT = 10
 
 var module_pos_queue = [0] 		# x-offset for the next module
 var module_queue = []	# queue tracking the number of modules
 var score = 0
 var start_time = 0
-var is_game_over = false
+var is_game_active = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,7 +29,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(is_game_over):
+	if not is_game_active:
 		return 
 	
 	# Move camera proportional to time (in seconds)
@@ -63,10 +63,11 @@ func _process(delta: float) -> void:
 func _on_bound_body_entered(body: Node2D) -> void:
 	if body.get_class() == "CharacterBody2D":
 		get_node("Viewport/RestartScreen/RestartText").text = "You were caught! Score was: %d"%score
-		is_game_over = true
+		is_game_active = false
 		#get_tree().quit()
 		get_node("Viewport/RestartScreen").visible = true
 
 
 func _on_restart_button_pressed() -> void:
 	get_tree().reload_current_scene()
+	

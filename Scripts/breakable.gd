@@ -28,5 +28,5 @@ func _on_dust_particles_finished() -> void:
 
 # Unlinks this door from player when they leave the break zone
 func _on_body_exited(body: Node2D) -> void:
-	if(body.is_in_group("Player")):
+	if(body.is_in_group("Player")):	
 		body.clear_breakable(self)
