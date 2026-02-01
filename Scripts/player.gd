@@ -3,7 +3,7 @@ extends CharacterBody2D
 # Player Physics Properties
 @export_category("Player Physics Properties")
 @export var SPEED_BASE = 300.0
-@export var JUMP_FORCE = 600.0
+@export var JUMP_FORCE = 600
 @export var GRAVITY = 25
 var speed = SPEED_BASE
 
