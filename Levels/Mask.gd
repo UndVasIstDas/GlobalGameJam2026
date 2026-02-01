@@ -6,7 +6,7 @@ var initial_position := Vector2.ZERO
 
 func _ready():
 	initial_position = position
-	if self.is_in_group("ChikenMask"):
+	if self.is_in_group("ChickenMask"):
 		mask_sprite.play("ChickenHover")
 	elif self.is_in_group("RabbitMask"):
 		mask_sprite.play("RabbitHover")

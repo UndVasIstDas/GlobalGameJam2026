@@ -17,9 +17,13 @@ var dash_duration = 0
 @export var max_ram_duration = 2
 var ram_duration = 0
 
+@onready var player_sprite = $AnimatedSprite2D
+
 func _process(delta):
 	handle_abilities()
 	movement(delta)
+	player_animations()
+	flip_player()
 
 func handle_abilities():
 	if Input.is_action_just_pressed("Power"):
@@ -61,3 +65,22 @@ func movement(delta):
 func jump():
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = -JUMP_FORCE	
+
+# Handle player animations
+func player_animations():
+	if is_on_floor():
+		if abs(velocity.x) > 0:
+			player_sprite.play("Run")
+		else:
+			pass
+			#player_sprite.play("Idle")
+	else:
+		pass
+		#player_sprite.play("Jump")
+		
+# Flip player sprite based on X velocity
+func flip_player():
+	if velocity.x > 0: 
+		player_sprite.flip_h = true
+	elif velocity.x < 0:
+		player_sprite.flip_h = false
