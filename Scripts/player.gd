@@ -14,41 +14,77 @@ var speed = SPEED_BASE
 var dash_duration = 0
 @export var speed_multiplier = 1.5
 
+@export var max_dash_cooldown = 1
+var dash_cooldown = 0
+
+@export var max_jump_cooldown = 1
+var jump_cooldown = 0
+
+@export var max_ram_cooldown = 1
+var ram_cooldown = 0
+
 @onready var player_sprite = $AnimatedSprite2D
+var state = "Default"
 
 var breakable_object = null
 
+# Main process
 func _process(delta):
+	handle_cooldowns(delta)
 	handle_abilities()
 	movement(delta)
 	player_animations()
 	flip_player()
 
+# Parse ability input
 func handle_abilities():
-	if Input.is_action_just_pressed("Power1") and not is_on_floor():
+	if Input.is_action_just_pressed("Power1") and not is_on_floor() and jump_cooldown <= 0:
 		velocity.y = -JUMP_FORCE
-	elif Input.is_action_just_pressed("Power2"):
+		jump_cooldown = max_jump_cooldown
+		state = "Chicken"
+		$"../Viewport/Hotbar/Chicken".start_cooldown(max_jump_cooldown)
+	elif Input.is_action_just_pressed("Power2") and dash_cooldown <= 0:
 		dash_duration = max_dash_duration
-	elif Input.is_action_just_pressed("Power3") and not breakable_object == null:
+		dash_cooldown = max_dash_cooldown
+		state = "Rabbit"
+		$"../Viewport/Hotbar/Rabbit".start_cooldown(max_jump_cooldown)
+	elif Input.is_action_just_pressed("Power3") and breakable_object and ram_cooldown <= 0:
 		breakable_object.break_door(self)
+		ram_cooldown = max_ram_cooldown
+		state = "Rhino"
+		$"../Viewport/Hotbar/Rhino".start_cooldown(max_jump_cooldown)
 
+# Decrease ability cooldown timers
+func handle_cooldowns(delta):
+	if jump_cooldown > 0:
+		jump_cooldown -= delta
+	
+	if dash_cooldown > 0:
+		dash_cooldown -= delta
+	
+	if ram_cooldown > 0:
+		ram_cooldown -= delta
+	
+# Move player
 func movement(delta):
 	# Add the gravity.
 	if !is_on_floor():
 		velocity.y += GRAVITY
 	
-	jump()
+	# Jump is space is pressed and player is on the floor
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
+		velocity.y = -JUMP_FORCE	
 
 	# Get the input direction and handle the movement/deceleration.
-	
 	var direction := Input.get_axis("Left", "Right")
 	
+	# If the player is dashing, for them to move, else normal movement
 	if dash_duration > 0:
 		dash_duration -= delta
 		velocity.x = speed*1.5
 		velocity.y *= 0.3
 	else:
-		dash_duration = 0
+		# If the player is going backways, don't add the viewports move speed
 		if direction < 0:
 			velocity.x = direction * SPEED_BASE
 		elif direction:
@@ -56,36 +92,30 @@ func movement(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 	
-
 	move_and_slide()
-	
-func jump():
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		velocity.y = -JUMP_FORCE	
 
 # Handle player animations
 func player_animations():
 	if is_on_floor():
 		if abs(velocity.x) > 0:
-			player_sprite.play("Run")
+			player_sprite.play("%sRun"%state)
 		else:
-			pass
-			#player_sprite.play("Idle")
+			player_sprite.play("%sIdle"%state)
 	else:
-		pass
-		#player_sprite.play("Jump")
-		
+		player_sprite.play("%sJump"%state)
+
 # Flip player sprite based on X velocity
 func flip_player():
 	if velocity.x > 0: 
 		player_sprite.flip_h = true
 	elif velocity.x < 0:
 		player_sprite.flip_h = false
-		
+
 # Mark door as breakable
 func set_breakable(body):
 	breakable_object = body
-	
+
+# Unlinks given door from the player
 func clear_breakable(body):
 	if breakable_object == body:
 		breakable_object = null

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cir8lhe2y2at"]
 
-[ext_resource type="Texture2D" uid="uid://cpo480eeq7jo6" path="res://Assets/world1_hallway_platform.png" id="1_w8k8f"]
-[ext_resource type="Texture2D" uid="uid://b1jwewcpgcs6t" path="res://Assets/world1_hallway_frontwall.png" id="2_1l5is"]
+[ext_resource type="Texture2D" uid="uid://cpo480eeq7jo6" path="res://Assets/Terrain/world1_hallway_platform.png" id="1_w8k8f"]
+[ext_resource type="Texture2D" uid="uid://b1jwewcpgcs6t" path="res://Assets/Terrain/world1_hallway_frontwall.png" id="2_1l5is"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1l5is"]
 texture = ExtResource("1_w8k8f")

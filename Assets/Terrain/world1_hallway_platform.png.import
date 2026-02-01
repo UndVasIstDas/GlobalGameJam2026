@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v28b33u66oq5"
-path="res://.godot/imported/rhino_mask.png-48f1a3c9f065175dbee954e261d9a43c.ctex"
+uid="uid://cpo480eeq7jo6"
+path="res://.godot/imported/world1_hallway_platform.png-0a61cc53af481b2c730ba89d9ba777be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/rhino_mask.png"
-dest_files=["res://.godot/imported/rhino_mask.png-48f1a3c9f065175dbee954e261d9a43c.ctex"]
+source_file="res://Assets/Terrain/world1_hallway_platform.png"
+dest_files=["res://.godot/imported/world1_hallway_platform.png-0a61cc53af481b2c730ba89d9ba777be.ctex"]
 
 [params]
 
