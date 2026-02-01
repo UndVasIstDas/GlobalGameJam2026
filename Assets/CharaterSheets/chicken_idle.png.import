@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb75ajt6lxoh7"
-path="res://.godot/imported/rabbit_mask.png-ba7dcb99a4a2ebff960dd9297d363008.ctex"
+uid="uid://4wpuc65rilte"
+path="res://.godot/imported/chicken_idle.png-9b4e6178edf849fc65d0c74b33a316a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/rabbit_mask.png"
-dest_files=["res://.godot/imported/rabbit_mask.png-ba7dcb99a4a2ebff960dd9297d363008.ctex"]
+source_file="res://Assets/CharaterSheets/chicken_idle.png"
+dest_files=["res://.godot/imported/chicken_idle.png-9b4e6178edf849fc65d0c74b33a316a3.ctex"]
 
 [params]
 

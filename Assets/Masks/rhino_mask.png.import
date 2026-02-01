@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b12aiowv41hxv"
-path="res://.godot/imported/character_sprite.png-f23212e3e7811e7204adf7aa03957952.ctex"
+uid="uid://v28b33u66oq5"
+path="res://.godot/imported/rhino_mask.png-8f78b4e77ba101dabeca5577ff0a6a51.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/character_sprite.png"
-dest_files=["res://.godot/imported/character_sprite.png-f23212e3e7811e7204adf7aa03957952.ctex"]
+source_file="res://Assets/Masks/rhino_mask.png"
+dest_files=["res://.godot/imported/rhino_mask.png-8f78b4e77ba101dabeca5577ff0a6a51.ctex"]
 
 [params]
 

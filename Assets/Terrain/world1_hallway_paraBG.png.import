@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1jwewcpgcs6t"
-path="res://.godot/imported/world1_hallway_frontwall.png-10268efc630f4bd357979575662bc772.ctex"
+uid="uid://blu8x7lnfq5vj"
+path="res://.godot/imported/world1_hallway_paraBG.png-e5872af3b02fd202f8361b7e3978eab9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/world1_hallway_frontwall.png"
-dest_files=["res://.godot/imported/world1_hallway_frontwall.png-10268efc630f4bd357979575662bc772.ctex"]
+source_file="res://Assets/Terrain/world1_hallway_paraBG.png"
+dest_files=["res://.godot/imported/world1_hallway_paraBG.png-e5872af3b02fd202f8361b7e3978eab9.ctex"]
 
 [params]
 

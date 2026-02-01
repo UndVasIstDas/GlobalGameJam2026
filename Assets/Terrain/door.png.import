@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpo480eeq7jo6"
-path="res://.godot/imported/world1_hallway_platform.png-af5ca0cbbe24e3d4b4db259d52975740.ctex"
+uid="uid://cloo8blcthym1"
+path="res://.godot/imported/door.png-4dd0c2242b91de0bfcfacce6a3d9ab86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/world1_hallway_platform.png"
-dest_files=["res://.godot/imported/world1_hallway_platform.png-af5ca0cbbe24e3d4b4db259d52975740.ctex"]
+source_file="res://Assets/Terrain/door.png"
+dest_files=["res://.godot/imported/door.png-4dd0c2242b91de0bfcfacce6a3d9ab86.ctex"]
 
 [params]
 

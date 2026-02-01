@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://olikia3cidt5"
-path="res://.godot/imported/chicken_mask.png-be259e73d953440de0d248a4fb76810d.ctex"
+uid="uid://b12aiowv41hxv"
+path="res://.godot/imported/default_run.png-a2160b200af2fdc3082d40f76903ceaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/chicken_mask.png"
-dest_files=["res://.godot/imported/chicken_mask.png-be259e73d953440de0d248a4fb76810d.ctex"]
+source_file="res://Assets/CharaterSheets/default_run.png"
+dest_files=["res://.godot/imported/default_run.png-a2160b200af2fdc3082d40f76903ceaa.ctex"]
 
 [params]
 

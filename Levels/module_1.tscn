@@ -1,9 +1,8 @@
 [gd_scene format=4 uid="uid://c1mxjtyyh51db"]
 
-[ext_resource type="TileSet" uid="uid://c3c118pqoej8x" path="res://Assets/hallway_ground_tileset.tres" id="1_wpg6n"]
-[ext_resource type="TileSet" uid="uid://cyxlhdeqiuqeh" path="res://Assets/hallway_walls_tileset.tres" id="2_twkeg"]
+[ext_resource type="Texture2D" uid="uid://cpo480eeq7jo6" path="res://Assets/Terrain/world1_hallway_platform.png" id="1_wpg6n"]
 [ext_resource type="Script" uid="uid://ceircb437dldx" path="res://Scripts/breakable.gd" id="6_2ngvf"]
-[ext_resource type="Texture2D" uid="uid://cloo8blcthym1" path="res://Assets/door.png" id="6_twkeg"]
+[ext_resource type="Texture2D" uid="uid://cloo8blcthym1" path="res://Assets/Terrain/door.png" id="6_twkeg"]
 [ext_resource type="Texture2D" uid="uid://bpho2up6yo5y" path="res://Assets/CloudTexture.png" id="8_ki0fc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ngvf"]

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://duo48d3cm6bag"]
 
-[ext_resource type="TileSet" uid="uid://c3c118pqoej8x" path="res://Assets/hallway_ground_tileset.tres" id="1_1l5is"]
-[ext_resource type="TileSet" uid="uid://cyxlhdeqiuqeh" path="res://Assets/hallway_walls_tileset.tres" id="2_015cl"]
+[ext_resource type="Texture2D" uid="uid://cpo480eeq7jo6" path="res://Assets/Terrain/world1_hallway_platform.png" id="1_w8k8f"]
+[ext_resource type="Texture2D" uid="uid://b1jwewcpgcs6t" path="res://Assets/Terrain/world1_hallway_frontwall.png" id="2_1l5is"]
 
 [node name="module_3" type="Node2D" unique_id=802640753]
 

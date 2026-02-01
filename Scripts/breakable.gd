@@ -10,15 +10,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
+# When player approaches door, set this door as breakable by the player
 func _on_body_entered(body):
-	var player = get_node("../../Player")
 	if body.is_in_group("Player"):
-		#TODO fix playering not being able to break door if they activate ability inside the BreakBox
-		#dust_particles.emitting = true
-		#$StaticBody2D.set_collision_layer_value(1, false)
-		#$Sprite2D.visible = false
-		
-		# When player approaches door, set this door as breakable by the player
 		body.set_breakable(self)
 		
 # Break this door
@@ -28,9 +22,11 @@ func break_door(player):
 	$Sprite2D.visible = false	
 	player.clear_breakable(self)
 
+# Frees the dust particles when the animation completes
 func _on_dust_particles_finished() -> void:
 	queue_free()
-	
+
+# Unlinks this door from player when they leave the break zone
 func _on_body_exited(body: Node2D) -> void:
 	if(body.is_in_group("Player")):	
 		body.clear_breakable(self)

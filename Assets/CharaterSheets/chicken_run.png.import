@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cloo8blcthym1"
-path="res://.godot/imported/door.png-a542cb27d09af7bf397856fe9af441c6.ctex"
+uid="uid://br7hvvpeyqt8h"
+path="res://.godot/imported/chicken_run.png-0593e5bd2cb2fec15b94d3a09fafe470.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/door.png"
-dest_files=["res://.godot/imported/door.png-a542cb27d09af7bf397856fe9af441c6.ctex"]
+source_file="res://Assets/CharaterSheets/chicken_run.png"
+dest_files=["res://.godot/imported/chicken_run.png-0593e5bd2cb2fec15b94d3a09fafe470.ctex"]
 
 [params]
 

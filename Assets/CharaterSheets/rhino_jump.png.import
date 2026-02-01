@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvipcg3r1ce0o"
-path="res://.godot/imported/hostileMob.png-46196c1c2c22f85d344f9151398971a0.ctex"
+uid="uid://bqok6xgkgtt8i"
+path="res://.godot/imported/rhino_jump.png-4881fb5a0e8605c74c6a0168773218d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/hostileMob.png"
-dest_files=["res://.godot/imported/hostileMob.png-46196c1c2c22f85d344f9151398971a0.ctex"]
+source_file="res://Assets/CharaterSheets/rhino_jump.png"
+dest_files=["res://.godot/imported/rhino_jump.png-4881fb5a0e8605c74c6a0168773218d0.ctex"]
 
 [params]
 

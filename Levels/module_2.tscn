@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://bbsjfuec5e7l4"]
 
-[ext_resource type="TileSet" uid="uid://c3c118pqoej8x" path="res://Assets/hallway_ground_tileset.tres" id="1_0wuwv"]
-[ext_resource type="TileSet" uid="uid://cyxlhdeqiuqeh" path="res://Assets/hallway_walls_tileset.tres" id="2_wgq3f"]
+[ext_resource type="Texture2D" uid="uid://cpo480eeq7jo6" path="res://Assets/Terrain/world1_hallway_platform.png" id="1_0wuwv"]
 
 [node name="module_2" type="Node2D" unique_id=802640753]
 

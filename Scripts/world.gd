@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 		module_pos_queue.push_front(module_pos_queue[0]+new_module.get_node("end").position.x)
 		
 		# Reduce size of module queue
-		if(module_pos_queue.size() > MODULE_LIMIT/2):
+		if(module_pos_queue.size() > floor(MODULE_LIMIT/2.0)):
 			module_pos_queue.pop_back()
 		
 		module_queue.push_back(new_module)
@@ -58,8 +58,6 @@ func _process(delta: float) -> void:
 	#Unload scenes
 	if(module_queue.size() >= MODULE_LIMIT and get_node("Player").global_position.x > module_pos_queue[module_pos_queue.size()-1]):
 		module_queue.pop_front().queue_free()
-			
-
 
 # Killbox handling
 func _on_bound_body_entered(body: Node2D) -> void:
