@@ -10,8 +10,8 @@ extends CharacterBody2D
 @export_category("Player Abilities")
 @export var ability = 0 # ["None", "Double Jump", "Speed", "Ram"]
 
-@export var max_speed_duration = 2
-var speed_duration = 0
+@export var max_dash_duration = 0.25
+var dash_duration = 0
 @export var speed_multiplier = 1.5
 
 @export var max_ram_duration = 2
@@ -27,7 +27,7 @@ func handle_abilities():
 			velocity.y = -JUMP_FORCE
 			ability = 0
 		elif ability == 2:
-			speed_duration = max_speed_duration
+			dash_duration = max_dash_duration
 			ability = 0
 		elif ability == 3:
 			ram_duration = max_ram_duration
@@ -44,17 +44,17 @@ func movement(delta):
 	
 	var direction := Input.get_axis("Left", "Right")
 	
-	var modified_speed = SPEED
-	if speed_duration > 0:
-		modified_speed = SPEED * speed_multiplier
-		speed_duration -= delta
+	if dash_duration > 0:
+		dash_duration -= delta
+		velocity.x = SPEED+300
+		velocity.y *= 0.3
 	else:
-		speed_duration = 0
+		dash_duration = 0
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	if direction:
-		velocity.x = direction * modified_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, modified_speed)
 
 	move_and_slide()
 	

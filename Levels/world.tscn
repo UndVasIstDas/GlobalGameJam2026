@@ -27,7 +27,7 @@ script = ExtResource("1_4dvsh")
 [node name="Player" type="CharacterBody2D" parent="." unique_id=528138566]
 position = Vector2(0, -16)
 script = ExtResource("1_pa6j6")
-ability = 1
+ability = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=454940013]
