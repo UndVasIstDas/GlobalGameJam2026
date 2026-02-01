@@ -1,6 +1,7 @@
 extends Node2D
 
 const VIEWPORT_SPEED_MOD = .05 			# Scalar for viewport movement function
+const SPEED_MIN = 4
 const MODULE_PATH = "res://Levels";
 const MODULE_LIST = ["module_4","module_0"] 	# List of module scenes
 const MODULE_LIMIT = 10
@@ -12,8 +13,12 @@ var score = 0
 var start_time = 0
 var is_game_active = true
 
+@onready var background_music = $Viewport/BackgroundMusic
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	background_music.play()
+	
 	var new_module
 	for i in range(0,2):
 		new_module = load("%s/%s.tscn"%[MODULE_PATH, MODULE_LIST.pick_random()]).instantiate()
@@ -67,9 +72,9 @@ func _on_bound_body_entered(body: Node2D) -> void:
 	if body.get_class() == "CharacterBody2D":
 		get_node("Viewport/RestartScreen/RestartText").text = "You were caught! Score was: %d"%score
 		is_game_active = false
-		#get_tree().quit()
 		get_node("Viewport/RestartScreen").visible = true
-
+		background_music.stop()
+		$Player/DeathSFX.play()
 
 func _on_restart_button_pressed() -> void:
 	get_tree().reload_current_scene()
