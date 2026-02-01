@@ -3,19 +3,18 @@ extends CharacterBody2D
 # Player Physics Properties
 @export_category("Player Physics Properties")
 @export var SPEED_BASE = 300.0
-@export var JUMP_FORCE = 500.0
+@export var JUMP_FORCE = 600.0
 @export var GRAVITY = 25
 var speed = SPEED_BASE
 
 # Player Abilities
 @export_category("Player Abilities")
-@export var ability = 0 # ["None", "Double Jump", "Speed", "Ram"]
 
 @export var max_dash_duration = 0.25
 var dash_duration = 0
 @export var speed_multiplier = 1.5
 
-@export var max_ram_duration = 2
+@export var max_ram_duration = 0.5
 var ram_duration = 0
 
 @onready var player_sprite = $AnimatedSprite2D
@@ -27,16 +26,12 @@ func _process(delta):
 	flip_player()
 
 func handle_abilities():
-	if Input.is_action_just_pressed("Power"):
-		if ability == 1 and not is_on_floor():
-			velocity.y = -JUMP_FORCE
-			ability = 0
-		elif ability == 2:
-			dash_duration = max_dash_duration
-			ability = 0
-		elif ability == 3:
-			ram_duration = max_ram_duration
-			ability = 0
+	if Input.is_action_just_pressed("Power1") and not is_on_floor():
+		velocity.y = -JUMP_FORCE
+	elif Input.is_action_just_pressed("Power2"):
+		dash_duration = max_dash_duration
+	elif Input.is_action_just_pressed("Power3"):
+		ram_duration = max_ram_duration
 
 func movement(delta):
 	# Add the gravity.
@@ -48,6 +43,9 @@ func movement(delta):
 	# Get the input direction and handle the movement/deceleration.
 	
 	var direction := Input.get_axis("Left", "Right")
+	
+	if ram_duration > 0:
+		ram_duration -= delta
 	
 	if dash_duration > 0:
 		dash_duration -= delta

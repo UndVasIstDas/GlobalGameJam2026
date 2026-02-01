@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://f7qud7k2qoaa"]
 
-[ext_resource type="Script" uid="uid://cd1weviwjgbca" path="res://Levels/world.gd" id="1_4dvsh"]
-[ext_resource type="Script" uid="uid://cvlhsl3ilfnu2" path="res://Levels/player.gd" id="1_pa6j6"]
+[ext_resource type="Script" uid="uid://cd1weviwjgbca" path="res://Scripts/world.gd" id="1_4dvsh"]
+[ext_resource type="Script" uid="uid://cvlhsl3ilfnu2" path="res://Scripts/player.gd" id="1_pa6j6"]
 [ext_resource type="Texture2D" uid="uid://b12aiowv41hxv" path="res://Assets/character_sprite.png" id="3_pa6j6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4dvsh"]
@@ -81,7 +81,7 @@ a = Vector2(576, -324)
 b = Vector2(-576, -324)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4dvsh"]
-size = Vector2(1151, 10)
+size = Vector2(1151, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pa6j6"]
 size = Vector2(49, 648)
@@ -92,7 +92,6 @@ script = ExtResource("1_4dvsh")
 [node name="Player" type="CharacterBody2D" parent="." unique_id=528138566 groups=["Player"]]
 position = Vector2(0, -16)
 script = ExtResource("1_pa6j6")
-ability = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=454940013]
@@ -122,11 +121,12 @@ shape = SubResource("SegmentShape2D_4dvsh")
 [node name="BottomBound" type="Area2D" parent="Viewport" unique_id=1912354919]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Viewport/BottomBound" unique_id=1978305167]
-position = Vector2(0.5, 319)
+position = Vector2(0.5, 306.5)
 shape = SubResource("RectangleShape2D_4dvsh")
 debug_color = Color(0.9983962, 0, 0.15449569, 0.41960785)
 
 [node name="ColorRect2" type="ColorRect" parent="Viewport/BottomBound" unique_id=571325452]
+z_index = 1
 offset_left = -576.0
 offset_top = 289.0
 offset_right = 576.0
@@ -144,6 +144,7 @@ shape = SubResource("RectangleShape2D_pa6j6")
 debug_color = Color(0.9954193, 0, 0.21351609, 0.41960785)
 
 [node name="ColorRect" type="ColorRect" parent="Viewport/LeftBound" unique_id=1206554768]
+z_index = 1
 offset_top = -324.0
 offset_right = 49.0
 offset_bottom = 324.0

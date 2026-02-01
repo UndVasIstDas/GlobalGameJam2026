@@ -2,7 +2,7 @@ extends Node2D
 
 const VIEWPORT_SPEED_MOD = .05 			# Scalar for viewport movement function
 const MODULE_PATH = "res://Levels";
-const MODULE_LIST = ["module_0","module_2","module_3"] 	# List of module scenes
+const MODULE_LIST = ["module_0", "module_1", "module_2"] 	# List of module scenes
 const MODULE_LIMIT = 10
 
 var module_pos_queue = [0] 		# x-offset for the next module
