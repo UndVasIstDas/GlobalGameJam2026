@@ -21,6 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://bxk8jysb1yde2" path="res://Assets/CharaterSheets/rhino_idle.png" id="11_3dlel"]
 [ext_resource type="Texture2D" uid="uid://bqok6xgkgtt8i" path="res://Assets/CharaterSheets/rhino_jump.png" id="12_kss01"]
 [ext_resource type="Texture2D" uid="uid://b0l0l6l654oeg" path="res://Assets/CharaterSheets/rhino_run.png" id="13_mgs3r"]
+[ext_resource type="AudioStream" uid="uid://cyrnklabsmnho" path="res://SFX/jump.wav" id="14_p3ug2"]
+[ext_resource type="AudioStream" uid="uid://djrqee1ca7fib" path="res://SFX/death.wav" id="15_pr8ms"]
+[ext_resource type="AudioStream" uid="uid://dtasqy21bnvs1" path="res://SFX/crash.wav" id="16_6m1pe"]
+[ext_resource type="AudioStream" uid="uid://481iix063nc8" path="res://SFX/runsong.wav" id="23_8mbvr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4dvsh"]
 radius = 88.0
@@ -821,35 +825,35 @@ region = Rect2(896, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgs3r"]
 atlas = ExtResource("6_vqnaq")
-region = Rect2(0, 0, 126, 128)
+region = Rect2(4, 0, 133, 132)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bx8pj"]
 atlas = ExtResource("6_vqnaq")
-region = Rect2(128, 0, 126, 128)
+region = Rect2(137, 0, 133, 132)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nhpdp"]
 atlas = ExtResource("6_vqnaq")
-region = Rect2(256, 0, 126, 128)
+region = Rect2(270, 0, 133, 132)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dy3rw"]
 atlas = ExtResource("6_vqnaq")
-region = Rect2(384, 0, 126, 128)
+region = Rect2(403, 0, 133, 132)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c23wl"]
 atlas = ExtResource("6_vqnaq")
-region = Rect2(512, 0, 126, 128)
+region = Rect2(536, 0, 133, 132)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5stjl"]
 atlas = ExtResource("6_vqnaq")
-region = Rect2(640, 0, 126, 128)
+region = Rect2(669, 0, 133, 132)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bnbff"]
 atlas = ExtResource("6_vqnaq")
-region = Rect2(768, 0, 126, 128)
+region = Rect2(802, 0, 133, 132)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pvcrr"]
 atlas = ExtResource("6_vqnaq")
-region = Rect2(896, 0, 126, 128)
+region = Rect2(935, 0, 133, 132)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gtojq"]
 animations = [{
@@ -963,6 +967,24 @@ shape = SubResource("CapsuleShape2D_4dvsh")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_ypq2k")
 animation = &"RhinoJump"
+
+[node name="CoyoteTimer" type="Timer" parent="Player" unique_id=1736468583]
+wait_time = 0.1
+one_shot = true
+
+[node name="JumpSFX" type="AudioStreamPlayer2D" parent="Player" unique_id=85302575]
+stream = ExtResource("14_p3ug2")
+volume_db = 0.968
+
+[node name="DeathSFX" type="AudioStreamPlayer2D" parent="Player" unique_id=578383457]
+position = Vector2(41, 38)
+stream = ExtResource("15_pr8ms")
+volume_db = -8.32
+
+[node name="CrashSFX" type="AudioStreamPlayer2D" parent="Player" unique_id=2127990604]
+position = Vector2(82, 76)
+stream = ExtResource("16_6m1pe")
+volume_db = 2.972
 
 [node name="Viewport" type="StaticBody2D" parent="." unique_id=450508996]
 z_index = 4
@@ -1083,7 +1105,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_gtojq")
 animation = &"rhino_hotbar"
 autoplay = "rhino_hotbar"
-frame_progress = 0.114633925
+frame_progress = 0.098954715
 script = ExtResource("8_ay5oo")
 
 [node name="RhinoLabel" type="Label" parent="Viewport/Hotbar/Rhino" unique_id=1824433191]
@@ -1159,7 +1181,11 @@ offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-text = "Restart"
+text = "Restart (Enter)"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Viewport" unique_id=1661663228]
+stream = ExtResource("23_8mbvr")
+volume_db = -8.32
 
 [node name="InitialFloor" type="TileMapLayer" parent="." unique_id=623449205]
 tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAD4/wAAAAAAAAAAAAD3/wAAAAAAAAAAAAD2/wAAAAAAAAAAAAD1/wAAAAAAAAAAAAD0/wAAAAAAAAAAAADz/wAAAAAAAAAAAADy/wAAAAAAAAAAAADx/wAAAAAAAAAAAADw/wAAAAAAAAAAAAA=")
@@ -1192,6 +1218,7 @@ texture = ExtResource("10_7ey7r")
 region_enabled = true
 region_rect = Rect2(0, 0, 1920, 1080)
 
+[connection signal="timeout" from="Player/CoyoteTimer" to="Player" method="_on_coyote_timer_timeout"]
 [connection signal="body_entered" from="Viewport/BottomBound" to="." method="_on_bound_body_entered"]
 [connection signal="body_entered" from="Viewport/LeftBound" to="." method="_on_bound_body_entered"]
 [connection signal="timeout" from="Viewport/Hotbar/Chicken/CooldownTimer" to="Viewport/Hotbar/Chicken" method="_on_cooldown_timer_timeout"]

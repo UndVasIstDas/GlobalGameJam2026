@@ -28,6 +28,8 @@ var state = "Default"
 
 var breakable_object = null
 
+var can_jump = true
+
 # Main process
 func _process(delta):
 	handle_cooldowns(delta)
@@ -40,6 +42,7 @@ func _process(delta):
 func handle_abilities():
 	if Input.is_action_just_pressed("Power1") and not is_on_floor() and jump_cooldown <= 0:
 		velocity.y = -JUMP_FORCE
+		$JumpSFX.play()
 		jump_cooldown = max_jump_cooldown
 		state = "Chicken"
 		$"../Viewport/Hotbar/Chicken".start_cooldown(max_jump_cooldown)
@@ -49,6 +52,7 @@ func handle_abilities():
 		state = "Rabbit"
 		$"../Viewport/Hotbar/Rabbit".start_cooldown(max_jump_cooldown)
 	elif Input.is_action_just_pressed("Power3") and breakable_object and ram_cooldown <= 0:
+		$CrashSFX.play()
 		breakable_object.break_door(self)
 		ram_cooldown = max_ram_cooldown
 		state = "Rhino"
@@ -67,13 +71,20 @@ func handle_cooldowns(delta):
 	
 # Move player
 func movement(delta):
+	# Update coyote timer
+	if can_jump == false and is_on_floor():
+		can_jump = true
+	
+	if not is_on_floor() and can_jump and $CoyoteTimer.is_stopped():
+		$CoyoteTimer.start()
+	
 	# Add the gravity.
-	if !is_on_floor():
+	if not is_on_floor():
 		velocity.y += GRAVITY
 	
-	# Jump is space is pressed and player is on the floor
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		velocity.y = -JUMP_FORCE	
+	# Jump with coyote time
+	if Input.is_action_just_pressed("Jump") and can_jump:
+		jump()
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("Left", "Right")
@@ -93,6 +104,14 @@ func movement(delta):
 			velocity.x = move_toward(velocity.x, 0, speed)
 	
 	move_and_slide()
+
+func jump():
+	$JumpSFX.play()
+	velocity.y = -JUMP_FORCE
+	can_jump = false
+
+func _on_coyote_timer_timeout() -> void:
+	can_jump = false
 
 # Handle player animations
 func player_animations():
