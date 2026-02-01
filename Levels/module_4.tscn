@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://c50vnu6wnqa1j" path="res://Assets/hallway_ground_tileset.tres" id="1_6ljc5"]
 [ext_resource type="TileSet" uid="uid://sm3r4n5vpckc" path="res://Assets/hallway_walls_tileset.tres" id="2_1whx4"]
 [ext_resource type="Script" uid="uid://ceircb437dldx" path="res://Scripts/breakable.gd" id="3_fwxic"]
-[ext_resource type="Texture2D" uid="uid://cloo8blcthym1" path="res://Assets/Terrain/door.png" id="4_pb4y8"]
+[ext_resource type="Texture2D" uid="uid://cgo4u5bjww5l3" path="res://Assets/door_sprite.png" id="4_6ljc5"]
 [ext_resource type="Texture2D" uid="uid://bpho2up6yo5y" path="res://Assets/CloudTexture.png" id="5_1sjve"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lrism"]
@@ -47,9 +47,9 @@ shape = SubResource("RectangleShape2D_xkt1c")
 debug_color = Color(0.67722064, 0.5057721, 1.92523e-07, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="Door" unique_id=1134982676]
-position = Vector2(-2.2500024, -2.25696)
-scale = Vector2(0.15791668, 0.15879399)
-texture = ExtResource("4_pb4y8")
+position = Vector2(-9.536743e-07, -13.999994)
+scale = Vector2(0.37981117, 0.38192123)
+texture = ExtResource("4_6ljc5")
 
 [node name="DustParticles" type="CPUParticles2D" parent="Door" unique_id=1910755976]
 position = Vector2(1, -12)
