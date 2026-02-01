@@ -9,18 +9,15 @@ var speed = SPEED_BASE
 
 # Player Abilities
 @export_category("Player Abilities")
-
 @export var max_dash_duration = 0.25
 var dash_duration = 0
 @export var speed_multiplier = 1.5
 
-@export var max_dash_cooldown = 1
+# Ability cooldowns
+@export var BASE_COOLDOWN = 0.5
+var max_cooldown = BASE_COOLDOWN
 var dash_cooldown = 0
-
-@export var max_jump_cooldown = 1
 var jump_cooldown = 0
-
-@export var max_ram_cooldown = 1
 var ram_cooldown = 0
 
 @onready var player_sprite = $AnimatedSprite2D
@@ -43,23 +40,24 @@ func handle_abilities():
 	if Input.is_action_just_pressed("Power1") and not is_on_floor() and jump_cooldown <= 0:
 		velocity.y = -JUMP_FORCE
 		$JumpSFX.play()
-		jump_cooldown = max_jump_cooldown
+		jump_cooldown = max_cooldown
 		state = "Chicken"
-		$"../Viewport/Hotbar/Chicken".start_cooldown(max_jump_cooldown)
+		$"../Viewport/Hotbar/Chicken".start_cooldown(max_cooldown)
 	elif Input.is_action_just_pressed("Power2") and dash_cooldown <= 0:
 		dash_duration = max_dash_duration
-		dash_cooldown = max_dash_cooldown
+		dash_cooldown = max_cooldown
 		state = "Rabbit"
-		$"../Viewport/Hotbar/Rabbit".start_cooldown(max_jump_cooldown)
+		$"../Viewport/Hotbar/Rabbit".start_cooldown(max_cooldown)
 	elif Input.is_action_just_pressed("Power3") and breakable_object and ram_cooldown <= 0:
 		$CrashSFX.play()
 		breakable_object.break_door(self)
-		ram_cooldown = max_ram_cooldown
+		ram_cooldown = max_cooldown
 		state = "Rhino"
-		$"../Viewport/Hotbar/Rhino".start_cooldown(max_jump_cooldown)
+		$"../Viewport/Hotbar/Rhino".start_cooldown(max_cooldown)
 
 # Decrease ability cooldown timers
 func handle_cooldowns(delta):
+	max_cooldown = min(0.1, BASE_COOLDOWN - floor(get_parent().score)/500)
 	if jump_cooldown > 0:
 		jump_cooldown -= delta
 	

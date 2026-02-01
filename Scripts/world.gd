@@ -3,7 +3,7 @@ extends Node2D
 const VIEWPORT_SPEED_MOD = .05 			# Scalar for viewport movement function
 const SPEED_MIN = 4
 const MODULE_PATH = "res://Levels";
-const MODULE_LIST = ["module_4","module_0"] 	# List of module scenes
+const MODULE_LIST = [0, 2] 	# List of module scenes
 const MODULE_LIMIT = 10
 
 var module_pos_queue = [0] 		# x-offset for the next module
@@ -20,7 +20,7 @@ func _ready() -> void:
 	
 	var new_module
 	for i in range(0,2):
-		new_module = load("%s/%s.tscn"%[MODULE_PATH, MODULE_LIST.pick_random()]).instantiate()
+		new_module = load("%s/module_%d.tscn"%[MODULE_PATH, MODULE_LIST.pick_random()]).instantiate()
 		new_module.position += Vector2(module_pos_queue[0], 0) # Adjust to proper position
 		add_child(new_module)
 		# Update offset
@@ -45,12 +45,13 @@ func _process(delta: float) -> void:
 	get_node("Player").speed = 300+1.1*speed/(delta)
 	
 	# Update score
-	score += floor(100*speed*delta)/100
+	score += floor(100*speed*delta)/50
 	get_node("Viewport/Score/Label").text = "Score: %d"%score
+	
 	
 	#Load scenes
 	if(module_queue.size() < MODULE_LIMIT):
-		var new_module = load("%s/%s.tscn"%[MODULE_PATH, MODULE_LIST.pick_random()]).instantiate()
+		var new_module = load("%s/module_%d.tscn"%[MODULE_PATH, MODULE_LIST.pick_random()]).instantiate()
 		new_module.position += Vector2(module_pos_queue[0], 0) # Adjust to proper position
 		add_child(new_module)
 		# Update offset
