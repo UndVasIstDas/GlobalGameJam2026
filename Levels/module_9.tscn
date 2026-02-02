@@ -1,0 +1,72 @@
+[gd_scene format=4 uid="uid://67ilk8ldmfim"]
+
+[ext_resource type="TileSet" uid="uid://c50vnu6wnqa1j" path="res://Assets/hallway_ground_tileset.tres" id="1_gfqri"]
+[ext_resource type="TileSet" uid="uid://sm3r4n5vpckc" path="res://Assets/hallway_walls_tileset.tres" id="2_xhfkj"]
+[ext_resource type="Script" uid="uid://ceircb437dldx" path="res://Scripts/breakable.gd" id="3_7jd4l"]
+[ext_resource type="Texture2D" uid="uid://cgo4u5bjww5l3" path="res://Assets/door_sprite.png" id="4_hhjut"]
+[ext_resource type="Texture2D" uid="uid://bpho2up6yo5y" path="res://Assets/CloudTexture.png" id="5_82d6l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrfwt"]
+size = Vector2(55, 96.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox6s7"]
+size = Vector2(212, 95)
+
+[sub_resource type="Gradient" id="Gradient_vcn5j"]
+offsets = PackedFloat32Array(0.30416667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="module_9" type="Node2D" unique_id=28944049]
+
+[node name="ground" type="TileMapLayer" parent="." unique_id=555608631]
+z_index = 1
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAlAAAAAAAAAAAAAAAmAAAAAAAAAAAAAAAnAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAQAAAAAAAAAAAAQAAgAAAAAAAAAAAARAAgAAAAAAAAAAAASAAgAAAAAAAAAAAATAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAVAAgAAAAAAAAAAAAWAAgAAAAAAAAAAAAXAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAZAAgAAAAAAAAAAAAaAAgAAAAAAAAAAAAbAAgAAAAAAAAAAAAcAAgAAAAAAAAAAAAdAAgAAAAAAAAAAAAeAAgAAAAAAAAAAAAfAAgAAAAAAAAAAAAgAAQAAAAAAAAAAAAhAAQAAAAAAAAAAAAiAAQAAAAAAAAAAAAjAAQAAAAAAAAAAAAMAPj/AAAAAAAAAAANAPj/AAAAAAAAAAAOAPj/AAAAAAAAAAAPAPj/AAAAAAAAAAAQAPj/AAAAAAAAAAARAPj/AAAAAAAAAAASAPj/AAAAAAAAAAATAPj/AAAAAAAAAAAUAPj/AAAAAAAAAAAVAPj/AAAAAAAAAAAWAPj/AAAAAAAAAAAXAPj/AAAAAAAAAAAYAPj/AAAAAAAAAAAZAPj/AAAAAAAAAAAaAPj/AAAAAAAAAAAbAPj/AAAAAAAAAAALAPz/AAAAAAAAAAAKAPz/AAAAAAAAAAAJAPz/AAAAAAAAAAAIAPz/AAAAAAAAAAA=")
+tile_set = ExtResource("1_gfqri")
+
+[node name="end" type="Marker2D" parent="." unique_id=349846923]
+position = Vector2(1280, 0)
+
+[node name="walls" type="TileMapLayer" parent="." unique_id=1974960344]
+position = Vector2(0, 32)
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAACAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAEAAAAAAAIAP3/AAACAAAAAAAJAP3/AAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAACAAAAAAABAAAAAAAEAAAAAAABAAEAAAADAAAAAAAIAP7/AAACAAAAAAADAP7/AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAACAAAAAAAFAP7/AAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAGAP7/AAAAAAAAAAAGAP//AAAAAAAAAAAGAAAAAAACAAAAAAACAAAAAAAAAAAAAAACAAEAAAABAAAAAAACAAIAAAAEAAAAAAADAAEAAAAAAAAAAAADAAIAAAAEAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAABAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAIAAIAAAAEAAAAAAAAAP3/AAAAAAAAAAAIAAEAAAAAAAAAAAA=")
+tile_set = ExtResource("2_xhfkj")
+
+[node name="Door" type="Area2D" parent="." unique_id=1874330891]
+position = Vector2(320, -34)
+script = ExtResource("3_7jd4l")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Door" unique_id=956063455]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Door/StaticBody2D" unique_id=866118753]
+position = Vector2(-0.5, -13.625)
+shape = SubResource("RectangleShape2D_vrfwt")
+
+[node name="BreakBox" type="CollisionShape2D" parent="Door" unique_id=1953960898]
+position = Vector2(-79, -14.5)
+shape = SubResource("RectangleShape2D_ox6s7")
+debug_color = Color(0.67722064, 0.5057721, 1.92523e-07, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="Door" unique_id=2044469599]
+position = Vector2(-9.536743e-07, -13.999994)
+scale = Vector2(0.37981117, 0.38192123)
+texture = ExtResource("4_hhjut")
+
+[node name="DustParticles" type="CPUParticles2D" parent="Door" unique_id=19911346]
+position = Vector2(1, -12)
+emitting = false
+amount = 15
+texture = ExtResource("5_82d6l")
+lifetime = 0.4
+one_shot = true
+speed_scale = 0.8
+emission_shape = 1
+emission_sphere_radius = 42.62
+direction = Vector2(10, 40)
+gravity = Vector2(0, 0)
+damping_min = 0.7
+damping_max = 1.0
+color_ramp = SubResource("Gradient_vcn5j")
+
+[connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
+[connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]
+[connection signal="finished" from="Door/DustParticles" to="Door" method="_on_dust_particles_finished"]

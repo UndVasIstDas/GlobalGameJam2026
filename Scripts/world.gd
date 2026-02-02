@@ -3,7 +3,7 @@ extends Node2D
 const VIEWPORT_SPEED_MOD = .05 			# Scalar for viewport movement function
 const SPEED_MIN = 4
 const MODULE_PATH = "res://Levels";
-const MODULE_LIST = [0, 1, 2, 3, 4, 5, 7] 	# List of module scenes
+const MODULE_LIST = [0,1,2,3,4,5,6,7,8,9,10,11,12] 	# List of module scenes
 const MODULE_LIMIT = 10
 
 var module_pos_queue = [0] 		# x-offset for the next module
@@ -19,8 +19,8 @@ func _ready() -> void:
 	background_music.play()
 	
 	var new_module
-	for i in range(0,2):
-		new_module = load("%s/module_%d.tscn"%[MODULE_PATH, MODULE_LIST.pick_random()]).instantiate()
+	for i in range(0,1):
+		new_module = load("%s/module_%d.tscn"%[MODULE_PATH, 11]).instantiate()
 		new_module.position += Vector2(module_pos_queue[0], 0) # Adjust to proper position
 		add_child(new_module)
 		# Update offset

@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://ch4o7mojq0m2g"]
+[gd_scene format=4 uid="uid://ck0261p6iwqll"]
 
 [ext_resource type="TileSet" uid="uid://c50vnu6wnqa1j" path="res://Assets/hallway_ground_tileset.tres" id="1_7csn7"]
 [ext_resource type="TileSet" uid="uid://sm3r4n5vpckc" path="res://Assets/hallway_walls_tileset.tres" id="2_4xmhk"]
