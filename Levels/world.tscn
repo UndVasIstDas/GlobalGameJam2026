@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bvipcg3r1ce0o" path="res://Assets/Terrain/hostileMob.png" id="4_vqnaq"]
 [ext_resource type="Texture2D" uid="uid://br7hvvpeyqt8h" path="res://Assets/CharaterSheets/chicken_run.png" id="5_8mbvr"]
 [ext_resource type="Texture2D" uid="uid://cb75ajt6lxoh7" path="res://Assets/Masks/rabbit_mask.png" id="5_x5oxt"]
+[ext_resource type="Texture2D" uid="uid://cxhx1ya050736" path="res://Assets/CharaterSheets/default_idle.png" id="6_d21qu"]
 [ext_resource type="Texture2D" uid="uid://v28b33u66oq5" path="res://Assets/Masks/rhino_mask.png" id="6_vqnaq"]
 [ext_resource type="Texture2D" uid="uid://cw7dus3fbxctb" path="res://Assets/CharaterSheets/default_jump.png" id="7_pr8ms"]
 [ext_resource type="Script" uid="uid://cay1lwxnlx2iu" path="res://Scripts/cooldown_timer.gd" id="8_ay5oo"]
@@ -115,35 +116,35 @@ atlas = ExtResource("5_8mbvr")
 region = Rect2(1960, 0, 280, 280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4i46"]
-atlas = ExtResource("3_v0p3n")
+atlas = ExtResource("6_d21qu")
 region = Rect2(0, 0, 280, 280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ece3b"]
-atlas = ExtResource("3_v0p3n")
+atlas = ExtResource("6_d21qu")
 region = Rect2(280, 0, 280, 280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrxa3"]
-atlas = ExtResource("3_v0p3n")
+atlas = ExtResource("6_d21qu")
 region = Rect2(560, 0, 280, 280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8bvoy"]
-atlas = ExtResource("3_v0p3n")
+atlas = ExtResource("6_d21qu")
 region = Rect2(840, 0, 280, 280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6d2n"]
-atlas = ExtResource("3_v0p3n")
+atlas = ExtResource("6_d21qu")
 region = Rect2(1120, 0, 280, 280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bnccr"]
-atlas = ExtResource("3_v0p3n")
+atlas = ExtResource("6_d21qu")
 region = Rect2(1400, 0, 280, 280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgi3t"]
-atlas = ExtResource("3_v0p3n")
+atlas = ExtResource("6_d21qu")
 region = Rect2(1680, 0, 280, 280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_koe44"]
-atlas = ExtResource("3_v0p3n")
+atlas = ExtResource("6_d21qu")
 region = Rect2(1960, 0, 280, 280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ff1ef"]
@@ -966,7 +967,8 @@ shape = SubResource("CapsuleShape2D_4dvsh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=555095364]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_ypq2k")
-animation = &"RhinoJump"
+animation = &"DefaultIdle"
+autoplay = "DefaultIdle"
 
 [node name="CoyoteTimer" type="Timer" parent="Player" unique_id=1736468583]
 wait_time = 0.1

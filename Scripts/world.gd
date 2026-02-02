@@ -3,7 +3,7 @@ extends Node2D
 const VIEWPORT_SPEED_MOD = .05 			# Scalar for viewport movement function
 const SPEED_MIN = 4
 const MODULE_PATH = "res://Levels";
-const MODULE_LIST = [0] 	# List of module scenes
+const MODULE_LIST = [0, 1, 2, 3, 4, 5, 7] 	# List of module scenes
 const MODULE_LIMIT = 10
 
 var module_pos_queue = [0] 		# x-offset for the next module
@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not is_game_active:
 		if Input.is_action_just_pressed("Start"):
 			get_parent().load_world(self)

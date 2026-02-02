@@ -1,13 +1,26 @@
-[gd_scene format=4 uid="uid://ck0261p6iwqll"]
+[gd_scene format=4 uid="uid://ch4o7mojq0m2g"]
 
 [ext_resource type="TileSet" uid="uid://c50vnu6wnqa1j" path="res://Assets/hallway_ground_tileset.tres" id="1_7csn7"]
 [ext_resource type="TileSet" uid="uid://sm3r4n5vpckc" path="res://Assets/hallway_walls_tileset.tres" id="2_4xmhk"]
+[ext_resource type="Script" uid="uid://ceircb437dldx" path="res://Scripts/breakable.gd" id="3_apejo"]
+[ext_resource type="Texture2D" uid="uid://cgo4u5bjww5l3" path="res://Assets/door_sprite.png" id="4_qi1kq"]
+[ext_resource type="Texture2D" uid="uid://bpho2up6yo5y" path="res://Assets/CloudTexture.png" id="5_u646s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxj0u"]
+size = Vector2(55, 96.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8lng"]
+size = Vector2(212, 95)
+
+[sub_resource type="Gradient" id="Gradient_dmrjo"]
+offsets = PackedFloat32Array(0.30416667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="module_7" type="Node2D" unique_id=28944049]
 
 [node name="ground" type="TileMapLayer" parent="." unique_id=555608631]
 z_index = 1
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAhAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAjAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAlAAAAAAAAAAAAAAAmAAAAAAAAAAAAAAAnAAAAAAAAAAAAAAAYAAQAAAAAAAAAAAAZAAQAAAAAAAAAAAAaAAQAAAAAAAAAAAAbAAQAAAAAAAAAAAAcAAQAAAAAAAAAAAAdAAQAAAAAAAAAAAAeAAQAAAAAAAAAAAAfAAQAAAAAAAAAAAAXAAgAAAAAAAAAAAAWAAgAAAAAAAAAAAAVAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAkAAQAAAAAAAAAAAAlAAQAAAAAAAAAAAAmAAQAAAAAAAAAAAAnAAQAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAjAAQAAAAAAAAAAAAiAAQAAAAAAAAAAAAhAAQAAAAAAAAAAAAgAAQAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAA=")
 tile_set = ExtResource("1_7csn7")
 
 [node name="end" type="Marker2D" parent="." unique_id=349846923]
@@ -15,5 +28,86 @@ position = Vector2(1280, 0)
 
 [node name="walls" type="TileMapLayer" parent="." unique_id=1974960344]
 position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAACAAAAAAAGAAEAAAAEAAAAAAAHAAEAAAACAAAAAAAIAAEAAAACAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAEAAAAAAAGAAIAAAABAAAAAAAHAAIAAAAAAAAAAAAIAAIAAAADAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAADAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAFAP3/AAACAAAAAAAGAP3/AAACAAAAAAAHAP3/AAAAAAAAAAAIAP3/AAACAAAAAAAJAP3/AAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAACAAAAAAACAAIAAAABAAAAAAAIAAAAAAADAAAAAAADAP7/AAADAAAAAAADAP//AAAAAAAAAAACAP7/AAADAAAAAAACAP//AAADAAAAAAAEAP7/AAADAAAAAAAEAP//AAAAAAAAAAAFAP7/AAACAAAAAAAGAP7/AAAAAAAAAAAFAAIAAAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAACAAAAAAAIAAEAAAACAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAEAAAAAAAIAAIAAAADAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAADAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAFAP3/AAACAAAAAAAGAP3/AAACAAAAAAAHAP3/AAAAAAAAAAAIAP3/AAACAAAAAAAJAP3/AAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAACAAAAAAACAAIAAAABAAAAAAABAAAAAAAEAAAAAAACAAAAAAABAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAADAAAAAAABAAEAAAACAAAAAAADAAIAAAAEAAAAAAAIAP7/AAADAAAAAAAIAP//AAABAAAAAAAJAP7/AAACAAAAAAAFAP7/AAABAAAAAAAGAP7/AAACAAAAAAAHAP7/AAAEAAAAAAAEAP7/AAABAAAAAAADAP7/AAAAAAAAAAA=")
 tile_set = ExtResource("2_4xmhk")
+
+[node name="Door" type="Area2D" parent="." unique_id=1071407274]
+position = Vector2(485, -34)
+script = ExtResource("3_apejo")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Door" unique_id=1618966674]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Door/StaticBody2D" unique_id=1935567087]
+position = Vector2(-0.5, -13.625)
+shape = SubResource("RectangleShape2D_hxj0u")
+
+[node name="BreakBox" type="CollisionShape2D" parent="Door" unique_id=736930091]
+position = Vector2(-79, -14.5)
+shape = SubResource("RectangleShape2D_k8lng")
+debug_color = Color(0.67722064, 0.5057721, 1.92523e-07, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="Door" unique_id=1702625942]
+position = Vector2(-9.536743e-07, -13.999994)
+scale = Vector2(0.37981117, 0.38192123)
+texture = ExtResource("4_qi1kq")
+
+[node name="DustParticles" type="CPUParticles2D" parent="Door" unique_id=1264779784]
+position = Vector2(1, -12)
+emitting = false
+amount = 15
+texture = ExtResource("5_u646s")
+lifetime = 0.4
+one_shot = true
+speed_scale = 0.8
+emission_shape = 1
+emission_sphere_radius = 42.62
+direction = Vector2(10, 40)
+gravity = Vector2(0, 0)
+damping_min = 0.7
+damping_max = 1.0
+color_ramp = SubResource("Gradient_dmrjo")
+
+[node name="Door2" type="Area2D" parent="." unique_id=1731929925]
+position = Vector2(1051, 94)
+script = ExtResource("3_apejo")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Door2" unique_id=1239421054]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Door2/StaticBody2D" unique_id=78083091]
+position = Vector2(-0.5, -13.625)
+shape = SubResource("RectangleShape2D_hxj0u")
+
+[node name="BreakBox" type="CollisionShape2D" parent="Door2" unique_id=470731281]
+position = Vector2(-79, -14.5)
+shape = SubResource("RectangleShape2D_k8lng")
+debug_color = Color(0.67722064, 0.5057721, 1.92523e-07, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="Door2" unique_id=1286268708]
+position = Vector2(-9.536743e-07, -13.999994)
+scale = Vector2(0.37981117, 0.38192123)
+texture = ExtResource("4_qi1kq")
+
+[node name="DustParticles" type="CPUParticles2D" parent="Door2" unique_id=769792809]
+position = Vector2(1, -12)
+emitting = false
+amount = 15
+texture = ExtResource("5_u646s")
+lifetime = 0.4
+one_shot = true
+speed_scale = 0.8
+emission_shape = 1
+emission_sphere_radius = 42.62
+direction = Vector2(10, 40)
+gravity = Vector2(0, 0)
+damping_min = 0.7
+damping_max = 1.0
+color_ramp = SubResource("Gradient_dmrjo")
+
+[connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
+[connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]
+[connection signal="finished" from="Door/DustParticles" to="Door" method="_on_dust_particles_finished"]
+[connection signal="body_entered" from="Door2" to="Door2" method="_on_body_entered"]
+[connection signal="body_exited" from="Door2" to="Door2" method="_on_body_exited"]
+[connection signal="finished" from="Door2/DustParticles" to="Door2" method="_on_dust_particles_finished"]

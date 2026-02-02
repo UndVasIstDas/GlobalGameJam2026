@@ -28,12 +28,13 @@ var breakable_object = null
 var can_jump = true
 
 # Main process
-func _process(delta):
-	handle_cooldowns(delta)
-	handle_abilities()
-	movement(delta)
-	player_animations()
-	flip_player()
+func _physics_process(delta):
+	if get_parent().is_game_active:
+		handle_cooldowns(delta)
+		handle_abilities()
+		movement(delta)
+		player_animations()
+		flip_player()
 
 # Parse ability input
 func handle_abilities():
@@ -41,23 +42,26 @@ func handle_abilities():
 		velocity.y = -JUMP_FORCE
 		$JumpSFX.play()
 		jump_cooldown = max_cooldown
+		player_sprite.stop()
 		state = "Chicken"
 		$"../Viewport/Hotbar/Chicken".start_cooldown(max_cooldown)
 	elif Input.is_action_just_pressed("Power2") and dash_cooldown <= 0:
 		dash_duration = max_dash_duration
 		dash_cooldown = max_cooldown
+		player_sprite.stop()
 		state = "Rabbit"
 		$"../Viewport/Hotbar/Rabbit".start_cooldown(max_cooldown)
 	elif Input.is_action_just_pressed("Power3") and breakable_object and ram_cooldown <= 0:
 		$CrashSFX.play()
 		breakable_object.break_door(self)
 		ram_cooldown = max_cooldown
+		player_sprite.stop()
 		state = "Rhino"
 		$"../Viewport/Hotbar/Rhino".start_cooldown(max_cooldown)
 
 # Decrease ability cooldown timers
 func handle_cooldowns(delta):
-	max_cooldown = min(0.1, BASE_COOLDOWN - floor(get_parent().score)/500)
+	max_cooldown = max(0.1, BASE_COOLDOWN - floor(get_parent().score)/500)
 	if jump_cooldown > 0:
 		jump_cooldown -= delta
 	
