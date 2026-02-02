@@ -14,7 +14,7 @@ var dash_duration = 0
 @export var speed_multiplier = 1.5
 
 # Ability cooldowns
-@export var BASE_COOLDOWN = 0.5
+@export var BASE_COOLDOWN = 0.75
 var max_cooldown = BASE_COOLDOWN
 var dash_cooldown = 0
 var jump_cooldown = 0
